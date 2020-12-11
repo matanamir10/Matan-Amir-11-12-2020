@@ -1,0 +1,22 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+}
+
+body {
+  height: inherit;
+  box-sizing: border-box;
+  //   display: grid;
+  //   grid-template-rows: 7rem calc(100vh - 10rem) max-content 1fr;
+  //   height: 3000px;
+  //   background-color: #100e17;
+}
