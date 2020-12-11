@@ -1,6 +1,10 @@
 @import '../../styles/mixins.scss';
 
 .create-email {
+  width: 45rem;
+  max-width: 80%;
+  padding: 1.2rem 1.6rem;
+
   &__form {
     height: 100%;
     @include flexCenter(column);
@@ -8,5 +12,6 @@
   &__input {
     width: 100%;
     font-size: 1.6rem;
+    margin: 1rem 0;
   }
 }
