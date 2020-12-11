@@ -79,6 +79,7 @@ export const CreateEmail = () => {
           value={formik.values.recciverId}
         />
         <Button
+          className='create-email__cta'
           type='submit'
           variant='contained'
           color='primary'

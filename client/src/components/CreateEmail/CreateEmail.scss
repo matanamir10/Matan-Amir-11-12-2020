@@ -12,6 +12,9 @@
   &__input {
     width: 100%;
     font-size: 1.6rem;
-    margin: 1rem 0;
+    margin: 1rem 0 !important;
+  }
+  &__cta {
+    margin-top: 1.4rem !important;
   }
 }
