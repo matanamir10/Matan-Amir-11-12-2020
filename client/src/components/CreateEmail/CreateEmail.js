@@ -1,8 +1,8 @@
 import React from 'react';
 import './CreateEmail.scss';
-import { TextField } from '@material-ui/core';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { Input } from '../../UI/Input';
 
 export const CreateEmail = () => {
   const formik = useFormik({
@@ -26,57 +26,52 @@ export const CreateEmail = () => {
   });
   return (
     <form className='create-email__form' noValidate autoComplete='off'>
-      <TextField
-        className='create-email__input'
+      <Input
         label='Subject'
         id='subject'
         name='subject'
         type='text'
+        error={formik.touched.subject && formik.errors.subject}
+        errorMessage={formik.errors.subject}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        value={formik.values.firstName}
+        value={formik.values.subject}
       />
-      {formik.touched.subject && formik.errors.subject ? (
-        <div>{formik.errors.subject}</div>
-      ) : null}
-      <TextField
+      <Input
         label='Message'
         id='message'
         name='message'
         type='text'
+        error={formik.touched.message && formik.errors.message}
+        errorMessage={formik.errors.message}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.message}
         rows={4}
         rowsMax={8}
       />
-      {formik.touched.message && formik.errors.message ? (
-        <div>{formik.errors.message}</div>
-      ) : null}
-      <TextField
+      <Input
         label='Sender Id'
         id='senderId'
         name='senderId'
         type='text'
+        error={formik.touched.senderId && formik.errors.senderId}
+        errorMessage={formik.errors.senderId}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.senderId}
       />
-      {formik.touched.senderId && formik.errors.senderId ? (
-        <div>{formik.errors.senderId}</div>
-      ) : null}
-      <TextField
+      <Input
         label='Recciver Id'
         id='recciverId'
         name='recciverId'
         type='text'
+        error={formik.touched.recciverId && formik.errors.recciverId}
+        errorMessage={formik.errors.recciverId}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.recciverId}
       />
-      {formik.touched.recciverId && formik.errors.recciverId ? (
-        <div>{formik.errors.recciverId}</div>
-      ) : null}
     </form>
   );
 };
