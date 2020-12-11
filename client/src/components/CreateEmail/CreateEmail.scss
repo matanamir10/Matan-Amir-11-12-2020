@@ -1,0 +1,12 @@
+@import '../../styles/mixins.scss';
+
+.create-email {
+  &__form {
+    height: 100%;
+    @include flexCenter(column);
+  }
+  &__input {
+    width: 100%;
+    font-size: 1.6rem;
+  }
+}
