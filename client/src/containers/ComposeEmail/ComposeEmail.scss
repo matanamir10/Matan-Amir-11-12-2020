@@ -1,0 +1,6 @@
+@import '../../styles/mixins.scss';
+
+.compose-email {
+  height: 100%;
+  @include flexCenter;
+}
