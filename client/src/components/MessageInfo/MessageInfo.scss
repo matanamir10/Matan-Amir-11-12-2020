@@ -1,0 +1,8 @@
+@import '../../styles/mixins.scss';
+
+.message-info {
+  @include absCenter;
+  &__btn {
+    margin: 1.2rem 1.4rem;
+  }
+}
