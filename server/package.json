@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "ts-node-dev --respawn src/index.ts"
+    "start": "ts-node-dev --respawn src/index.ts"
   },
   "keywords": [],
   "author": "",
