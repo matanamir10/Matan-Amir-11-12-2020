@@ -11,8 +11,8 @@ export const messageReducer = (state = initialSatate, action) => {
       return state;
     case GET_MESSAGES:
       return {
-        messagesSent: action.messages.messageSent,
-        messagesReccived: action.messages.messageReccived,
+        messagesSent: action.messages.sended,
+        messagesReccived: action.messages.reccived,
       };
     default:
       return state;
