@@ -24,8 +24,11 @@ export class UserController {
   ])
   private async getAllMessages(req: Request, res: Response) {
     const { senderId } = req.params;
-    const userMessages = await Message.find({ senderId });
-    return res.status(StatusCodes.OK).send(userMessages);
+    const sendedMessages = await Message.find({ senderId });
+    const reccivedMessages = await Message.find({ recciverId: senderId });
+    return res
+      .status(StatusCodes.OK)
+      .send({ sended: sendedMessages, reccived: reccivedMessages });
   }
   @Post('create')
   @Middleware([
