@@ -11,14 +11,12 @@ export const App = () => {
   return (
     <div className='container'>
       <Navigation />
-      <div className='content'>
-        <Suspense fallback={<CircularProgress color='secondary' />}>
-          <Switch>
-            <Route path='/compose' component={ComposeEmail} />
-            <Route path='/manage' component={ManageEmail} />
-          </Switch>
-        </Suspense>
-      </div>
+      <Suspense fallback={<CircularProgress color='secondary' />}>
+        <Switch>
+          <Route path='/compose' component={ComposeEmail} />
+          <Route path='/manage' component={ManageEmail} />
+        </Switch>
+      </Suspense>
     </div>
   );
 };
