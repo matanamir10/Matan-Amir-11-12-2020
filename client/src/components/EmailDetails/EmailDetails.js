@@ -16,7 +16,7 @@ export const EmailDetails = () => {
     validationSchema: Yup.object({
       userId: Yup.string().required('UserId is required'),
     }),
-    onSubmit: (userId) => {
+    onSubmit: ({ userId }) => {
       console.log(userId);
       dispatch(getMessages(userId));
     },
