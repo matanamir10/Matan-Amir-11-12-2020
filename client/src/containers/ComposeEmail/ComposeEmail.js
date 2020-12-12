@@ -1,6 +1,6 @@
 import React from 'react';
 import './ComposeEmail.scss';
-import { CreateEmail } from '../../components/CreateEmail/CreateEmail';
+import CreateEmail from '../../components/CreateEmail/CreateEmail';
 
 const ComposeEmail = () => {
   return (

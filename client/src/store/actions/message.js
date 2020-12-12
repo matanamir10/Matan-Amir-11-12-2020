@@ -5,36 +5,39 @@ export const DELETE_MESSAGE = 'delete-message';
 export const GET_MESSAGES = 'get-messages';
 
 export const createMessage = (message) => {
-  return async (dispatch) => {
-    try {
-      await axios.post('/api/message/create', message);
-      dispatch({
-        type: CREATE_MESSAGE,
+  return (dispatch) => {
+    return new Promise((resolve) => {
+      axios.post('/api/message/create', message).then(() => {
+        dispatch({
+          type: CREATE_MESSAGE,
+        });
+        resolve();
       });
-    } catch (error) {
-      console.log(error);
-      //   dispatch({
-      //     type: CREATE_MESSAGE,
-      //     message: error.message,
-      //   });
-    }
+    });
   };
 };
 
 export const getMessages = (userId) => {
   return async (dispatch) => {
-    try {
-      const { data } = await axios.get(`/api/message/${userId}`);
-      dispatch({
-        type: GET_MESSAGES,
-        messages: data,
+    const { data } = await axios.get(`/api/message/${userId}`);
+    dispatch({
+      type: GET_MESSAGES,
+      messages: data,
+    });
+  };
+};
+
+export const deleteMessage = (messageId, messgeType) => {
+  return (dispatch) => {
+    return new Promise((resolve) => {
+      axios.delete(`/api/message/delete/${messageId}`).then(() => {
+        dispatch({
+          type: DELETE_MESSAGE,
+          messageId,
+          messgeType,
+        });
+        resolve();
       });
-    } catch (error) {
-      console.log(error);
-      //   dispatch({
-      //     type: CREATE_MESSAGE,
-      //     message: error.message,
-      //   });
-    }
+    });
   };
 };

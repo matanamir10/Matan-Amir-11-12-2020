@@ -48,9 +48,7 @@ export class UserController {
       subject,
     });
     await messageDoc.save();
-    return res
-      .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .send({ message: messageDoc });
+    return res.status(StatusCodes.CREATED).send({ message: messageDoc });
   }
 
   @Delete('delete/:messageId')

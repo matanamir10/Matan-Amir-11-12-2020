@@ -6,8 +6,10 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { createMessage } from '../../store/actions/message';
 import { Input } from '../../UI/Input';
+import withErrorHandler from '../../withErrorHandler/withErrorHandler';
+import { toast } from 'react-toastify';
 
-export const CreateEmail = () => {
+const CreateEmail = () => {
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -24,8 +26,17 @@ export const CreateEmail = () => {
       senderId: Yup.string().required('Required'),
       recciverId: Yup.string().required('Required'),
     }),
-    onSubmit: (messageValues) => {
-      dispatch(createMessage(messageValues));
+    onSubmit: async (messageValues) => {
+      await dispatch(createMessage(messageValues));
+      formik.resetForm();
+      toast.success('Message was created', {
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     },
   });
   return (
@@ -97,3 +108,5 @@ export const CreateEmail = () => {
     </Paper>
   );
 };
+
+export default withErrorHandler(CreateEmail);

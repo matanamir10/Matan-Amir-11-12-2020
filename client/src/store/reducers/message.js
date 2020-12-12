@@ -1,4 +1,9 @@
-import { CREATE_MESSAGE, GET_MESSAGES } from '../actions/message';
+import { MessageType } from '../../constants/messageType';
+import {
+  CREATE_MESSAGE,
+  DELETE_MESSAGE,
+  GET_MESSAGES,
+} from '../actions/message';
 
 const initialSatate = {
   messagesSent: [],
@@ -13,6 +18,15 @@ export const messageReducer = (state = initialSatate, action) => {
       return {
         messagesSent: action.messages.sended,
         messagesReccived: action.messages.reccived,
+      };
+    case DELETE_MESSAGE:
+      let key =
+        action.messgeType === MessageType.To
+          ? 'messagesSent'
+          : 'messagesReccived';
+      return {
+        ...state,
+        [key]: state[key].filter((msg) => msg.id !== action.messageId),
       };
     default:
       return state;

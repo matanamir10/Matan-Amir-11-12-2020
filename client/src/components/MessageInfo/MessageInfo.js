@@ -36,12 +36,6 @@ export const MessageInfo = ({ history }) => {
         }}>
         Back
       </Button>
-      <Button
-        variant='contained'
-        className='message-info__btn'
-        color='secondary'>
-        Delte
-      </Button>
     </List>
   );
 };

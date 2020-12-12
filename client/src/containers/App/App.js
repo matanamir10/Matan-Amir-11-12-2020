@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import './App.scss';
 import { Route, Switch } from 'react-router-dom';
 import { CircularProgress } from '@material-ui/core';
+import { ToastContainer } from 'react-toastify';
 import { Navigation } from '../../components/Navigation/Navigation';
 
 const ComposeEmail = React.lazy(() => import('../ComposeEmail/ComposeEmail'));
@@ -17,6 +18,7 @@ export const App = () => {
           <Route path='/manage' component={ManageEmail} />
         </Switch>
       </Suspense>
+      <ToastContainer />
     </div>
   );
 };

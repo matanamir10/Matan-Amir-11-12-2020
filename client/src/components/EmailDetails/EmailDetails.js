@@ -6,8 +6,9 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { getMessages } from '../../store/actions/message';
 import { Input } from '../../UI/Input';
+import withErrorHandler from '../../withErrorHandler/withErrorHandler';
 
-export const EmailDetails = () => {
+const EmailDetails = () => {
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -52,3 +53,5 @@ export const EmailDetails = () => {
     </div>
   );
 };
+
+export default withErrorHandler(EmailDetails);

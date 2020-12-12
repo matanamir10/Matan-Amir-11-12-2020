@@ -6,15 +6,8 @@ import {
   IconButton,
 } from '@material-ui/core';
 import { Delete, Info } from '@material-ui/icons';
-import { useHistory } from 'react-router-dom';
 
-export const MessageItem = ({ message, prefix }) => {
-  const history = useHistory();
-  const routeToMessageInfo = () => {
-    history.push(`${history.location.pathname}/messageInfo/${message.id}`, {
-      message,
-    });
-  };
+export const MessageItem = ({ message, prefix, handleDelete, moveToRoute }) => {
   return (
     <ListItem>
       <ListItemText
@@ -22,10 +15,16 @@ export const MessageItem = ({ message, prefix }) => {
         secondary={message.createdAt}
       />
       <ListItemSecondaryAction>
-        <IconButton edge='end' aria-label='delete'>
+        <IconButton
+          edge='end'
+          aria-label='delete'
+          onClick={handleDelete.bind(null, message.id, prefix)}>
           <Delete />
         </IconButton>
-        <IconButton edge='end' aria-label='delete' onClick={routeToMessageInfo}>
+        <IconButton
+          edge='end'
+          aria-label='delete'
+          onClick={moveToRoute.bind(null, message)}>
           <Info />
         </IconButton>
       </ListItemSecondaryAction>
