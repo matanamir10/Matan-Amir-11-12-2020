@@ -1,14 +1,14 @@
 import React from 'react';
-import './MessageList.scss';
-import { useSelector } from 'react-redux';
+import { List } from '@material-ui/core';
+import { MessageItem } from './MessageItem';
 
-export const MessageList = () => {
-  const { messages } = useSelector((state) => state.message);
-
+export const MessageList = ({ messages, prefix }) => {
   return (
-    <div className='messages-list'>
-      <h1>List messaged</h1>
-    </div>
+    <List dense={true} className='messages-list'>
+      {messages.map((msg) => (
+        <MessageItem message={msg} prefix={prefix} />
+      ))}
+    </List>
   );
 };
 
