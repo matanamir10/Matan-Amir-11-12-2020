@@ -1,0 +1,7 @@
+@import '../../styles/mixins.scss';
+
+.messages-list {
+  height: 100%;
+  @include flexCenter;
+  overflow: auto;
+}
