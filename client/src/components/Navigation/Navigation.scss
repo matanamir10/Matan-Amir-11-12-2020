@@ -1,0 +1,19 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.navigation {
+  background-color: $header-color;
+  @include flexCenter;
+
+  &__item {
+    text-transform: capitalize;
+    text-decoration: none;
+    color: $header-link-color;
+    &:not(:last-child) {
+      margin-right: 2.5rem;
+    }
+    &--active {
+      color: $header-link-active-color;
+    }
+  }
+}
