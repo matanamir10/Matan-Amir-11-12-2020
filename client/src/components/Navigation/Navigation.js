@@ -9,13 +9,13 @@ export const Navigation = () => {
         className='navigation__item'
         activeClassName='navigation__item--active'
         to='/compose'>
-        Compose
+        <span> Compose</span>
       </NavLink>
       <NavLink
         className='navigation__item'
         activeClassName='navigation__item--active'
         to='/manage'>
-        Manage
+        <span>Manage</span>
       </NavLink>
     </nav>
   );
