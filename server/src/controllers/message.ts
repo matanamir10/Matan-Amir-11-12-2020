@@ -27,7 +27,7 @@ export class UserController {
     const userMessages = await Message.find({ senderId });
     return res.status(StatusCodes.OK).send(userMessages);
   }
-  @Post('/create')
+  @Post('create')
   @Middleware([
     body('senderId').not().isEmpty(),
     body('recciverId').not().isEmpty(),
@@ -45,7 +45,9 @@ export class UserController {
       subject,
     });
     await messageDoc.save();
-    return res.status(StatusCodes.CREATED).send(messageDoc);
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .send({ message: messageDoc });
   }
 
   @Delete('delete/:messageId')
