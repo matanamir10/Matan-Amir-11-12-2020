@@ -27,7 +27,7 @@ export const getMessages = (userId) => {
       const { data } = await axios.get(`/api/message/${userId}`);
       dispatch({
         type: GET_MESSAGES,
-        messages: data.messages,
+        messages: data,
       });
     } catch (error) {
       console.log(error);
