@@ -1,15 +1,15 @@
 import mongoose from 'mongoose';
 
 interface MessageAttrs {
-  sender: string;
-  recciver: string;
+  senderId: string;
+  recciverId: string;
   message: string;
   subject: string;
 }
 
 interface MessageDoc extends mongoose.Document {
-  sender: string;
-  recciver: string;
+  senderId: string;
+  recciverId: string;
   message: string;
   subject: string;
   createdAt: Date;
@@ -21,11 +21,11 @@ interface MessageModel extends mongoose.Model<MessageDoc> {
 
 const messageSchema = new mongoose.Schema(
   {
-    sender: {
+    senderId: {
       type: String,
       required: true,
     },
-    recciver: {
+    recciverId: {
       type: String,
       required: true,
     },
@@ -39,15 +39,20 @@ const messageSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: { createdAt: true },
+    timestamps: { createdAt: true, updatedAt: false },
     toJSON: {
       transform(doc, ret) {
         ret.id = ret._id;
         delete ret._id;
+        delete ret.__v;
       },
     },
   }
 );
+
+messageSchema.statics.build = (messageAttrs: MessageAttrs) => {
+  return new Message(messageAttrs);
+};
 
 const Message = mongoose.model<MessageDoc, MessageModel>(
   'Message',
