@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
-import { createMessage } from '../../store/actions/message';
+import { getMessages } from '../../store/actions/message';
 import { Input } from '../../UI/Input';
 
 export const EmailDetails = () => {
@@ -18,7 +18,7 @@ export const EmailDetails = () => {
     }),
     onSubmit: (userId) => {
       console.log(userId);
-      //   dispatch(createMessage(messageValues));
+      dispatch(getMessages(userId));
     },
   });
   return (
