@@ -1,6 +1,11 @@
 import React from 'react';
+import { EmailDetails } from '../../components/EmailDetails/EmailDetails';
 
 const ManageEmail = () => {
-  return <div>Manage email</div>;
+  return (
+    <>
+      <EmailDetails />
+    </>
+  );
 };
 export default ManageEmail;
