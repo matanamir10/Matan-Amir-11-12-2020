@@ -24,10 +24,13 @@ export class UserController {
   ])
   private async getAllMessages(req: Request, res: Response) {
     const { senderId } = req.params;
-    const userMessages = await Message.find({ senderId });
-    return res.status(StatusCodes.OK).send(userMessages);
+    const sendedMessages = await Message.find({ senderId });
+    const reccivedMessages = await Message.find({ recciverId: senderId });
+    return res
+      .status(StatusCodes.OK)
+      .send({ sended: sendedMessages, reccived: reccivedMessages });
   }
-  @Post('/create')
+  @Post('create')
   @Middleware([
     body('senderId').not().isEmpty(),
     body('recciverId').not().isEmpty(),
@@ -45,7 +48,7 @@ export class UserController {
       subject,
     });
     await messageDoc.save();
-    return res.status(StatusCodes.CREATED).send(messageDoc);
+    return res.status(StatusCodes.CREATED).send({ message: messageDoc });
   }
 
   @Delete('delete/:messageId')

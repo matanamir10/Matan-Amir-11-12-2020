@@ -1,0 +1,8 @@
+@import '../../styles/mixins.scss';
+
+.manage-details {
+  padding: 0.8rem 1.6rem;
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  grid-gap: 2rem;
+}

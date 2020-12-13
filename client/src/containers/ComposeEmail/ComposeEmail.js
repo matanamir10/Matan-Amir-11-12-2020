@@ -1,12 +1,13 @@
 import React from 'react';
 import './ComposeEmail.scss';
-import { CreateEmail } from '../../components/CreateEmail/CreateEmail';
-import './ComposeEmail.scss';
+import CreateEmail from '../../components/CreateEmail/CreateEmail';
 
-export const ComposeEmail = () => {
+const ComposeEmail = () => {
   return (
     <div className='compose-email'>
       <CreateEmail />
     </div>
   );
 };
+
+export default ComposeEmail;
