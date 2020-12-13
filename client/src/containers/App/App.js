@@ -27,27 +27,28 @@ export const App = () => {
     }
   }, [auth]);
 
-  let routes = (
+  let app = (
     <>
       <Route component={Auth} />
       <Redirect from='/' to='/auth' />
     </>
   );
   if (auth.isAuth) {
-    routes = (
-      <Switch>
+    console.log('in private routesssssssssssssssssssssssss');
+    app = (
+      <>
         <Navigation />
         <Suspense fallback={<CircularProgress color='secondary' />}>
           <Switch>
-            <Route path='/auth' component={Auth} />
+            {/* <Route path='/auth' component={Auth} /> */}
             <Route path='/compose' component={ComposeEmail} />
             <Route path='/manage' component={ManageEmail} />
-            {/* <Redirect from='/' to='/' /> */}
+            <Route component={() => <h1>Please select</h1>} />
           </Switch>
         </Suspense>
         <ToastContainer />
-      </Switch>
+      </>
     );
   }
-  return <div className='container'>{routes}</div>;
+  return <div className='container'>{app}</div>;
 };

@@ -5,6 +5,12 @@
   background-color: $header-color;
   @include flexCenter;
 
+  &__user-text {
+    font-size: 1.2rem;
+    color: $color-primary;
+    margin-right: 2.5rem;
+    text-decoration: underline;
+  }
   &__item {
     text-transform: capitalize;
     text-decoration: none;

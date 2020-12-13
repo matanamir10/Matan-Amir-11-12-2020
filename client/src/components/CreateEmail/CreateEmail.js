@@ -3,7 +3,7 @@ import './CreateEmail.scss';
 import { Button, Paper } from '@material-ui/core';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createMessage } from '../../store/actions/message';
 import { Input } from '../../UI/Input';
 import withErrorHandler from '../../withErrorHandler/withErrorHandler';
@@ -11,11 +11,11 @@ import { toast } from 'react-toastify';
 
 const CreateEmail = () => {
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
   const formik = useFormik({
     initialValues: {
       subject: '',
       message: '',
-      senderId: '',
       recciverId: '',
     },
     validationSchema: Yup.object({
@@ -23,11 +23,13 @@ const CreateEmail = () => {
         .max(30, 'Must be 30 characters or less')
         .required('Required'),
       message: Yup.string().required('Required'),
-      senderId: Yup.string().required('Required'),
       recciverId: Yup.string().required('Required'),
     }),
     onSubmit: async (messageValues) => {
-      await dispatch(createMessage(messageValues));
+      console.log(messageValues);
+      await dispatch(
+        createMessage({ ...messageValues, senderId: user.userId })
+      );
       formik.resetForm();
       toast.success('Message was created', {
         autoClose: 5000,
@@ -78,11 +80,7 @@ const CreateEmail = () => {
           id='senderId'
           name='senderId'
           type='text'
-          error={formik.touched.senderId && formik.errors.senderId}
-          errorMessage={formik.errors.senderId}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.senderId}
+          value={user.userId}
         />
         <Input
           className='create-email__input'
