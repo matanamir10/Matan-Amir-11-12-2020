@@ -38,7 +38,7 @@ const DeleteMessage = ({ modalDetails, handleClose }) => {
       <DialogTitle id='alert-dialog-title'>Are you sure ?</DialogTitle>
       <DialogContent>
         <DialogContentText id='alert-dialog-description'>
-          The message will be deleted
+          The message will be deleted !
         </DialogContentText>
       </DialogContent>
       <DialogActions>
