@@ -15,7 +15,7 @@ export const MessageTabs = ({ value, handleChange }) => {
       aria-label='simple tabs example'
       centered>
       <Tab label='Sent' {...a11yProps(0)} />
-      <Tab label='Reccived Add referesh options' {...a11yProps(1)} />
+      <Tab label='Reccived' {...a11yProps(1)} />
     </Tabs>
   );
 };

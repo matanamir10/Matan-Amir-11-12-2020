@@ -11,6 +11,7 @@ const EmailDetails = () => {
   const searchUserRelatedMessages = () => {
     dispatch(getMessages(auth.user.userId));
   };
+
   return (
     <div className='email-details'>
       <Button

@@ -1,42 +1,42 @@
-import express from 'express';
 import path from 'path';
-import * as bodyParser from 'body-parser';
-import 'express-async-errors';
-import { Server } from '@overnightjs/core';
+import express from 'express';
+import bodyParser from 'body-parser';
 import cors from 'cors';
+import morgan from 'morgan';
+import 'express-async-errors';
 import cookieSession from 'cookie-session';
-import { NotFoundError } from './errors/notFound';
-import { currentUser } from './middlewares/current-user';
+import { Server } from '@overnightjs/core';
 import { errorHandler } from './middlewares/errorHandler';
 import { AuthController } from './controllers/auth';
 import { MessageController } from './controllers/message';
+import { AppLogger } from './models/Logger';
 
 export class ServerApp extends Server {
   constructor() {
-    super(process.env.NODE_ENV === 'development'); // setting showLogs to true
+    super(true);
+    this.app.use(morgan('tiny'));
     this.app.use(bodyParser.json());
     this.app.use(cors({ origin: true, credentials: true }));
     this.app.use(
       cookieSession({
         keys: ['secret'],
         signed: false,
-        // secure: process.env.NODE_ENV !== 'test',
         secure: false,
         httpOnly: true,
       })
     );
-    if (process.env.NODE_ENV === 'production') {
-      this.app.use(express.static(path.join(__dirname, 'client', 'build')));
-    }
     this.setupControllers();
-
+    if (process.env.NODE_ENV === 'production') {
+      this.app.use(
+        express.static(path.join(__dirname, '..', 'client', 'build'))
+      );
+      this.app.get('/*', (req, res) => {
+        res.sendFile(
+          path.join(__dirname, '..', 'client', 'build', 'index.html')
+        );
+      });
+    }
     this.app.use(errorHandler);
-    this.app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-    });
-    // this.app.all('*', async () => {
-    //   throw new NotFoundError();
-    // });
   }
 
   private setupControllers(): void {
@@ -47,7 +47,7 @@ export class ServerApp extends Server {
 
   public start(port: number): void {
     this.app.listen(port, () => {
-      console.log(`App running on port: ${port}`);
+      AppLogger.getLogger().info(`App running on port: ${port}`);
     });
   }
 }

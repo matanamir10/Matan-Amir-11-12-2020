@@ -1,4 +1,5 @@
 import * as dotenv from 'dotenv';
+import { AppLogger } from './models/Logger';
 import { connectToDB } from './db/mongoose';
 import { ServerApp } from './server';
 
@@ -9,10 +10,12 @@ if (!process.env.MONGO_URI || !process.env.JWT_KEY) {
 }
 const run = async () => {
   await connectToDB();
-  const port = 4000 || process.env.PORT;
+  AppLogger.getLogger().info(`Connected to mongodb`);
+  const port = parseInt(process.env.PORT!) || 4000;
   new ServerApp().start(port);
 };
 
 run().catch((err) => {
+  AppLogger.getLogger().err(err.message);
   process.exit(0);
 });

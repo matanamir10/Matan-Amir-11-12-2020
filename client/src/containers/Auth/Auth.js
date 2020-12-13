@@ -15,7 +15,7 @@ import { AuthOptions } from '../../constants/authOptions';
 import { Input } from '../../UI/Input';
 import withErrorHandler from '../../withErrorHandler/withErrorHandler';
 
-const Auth = ({ history }) => {
+const Auth = () => {
   const disptach = useDispatch();
   const formik = useFormik({
     initialValues: {
