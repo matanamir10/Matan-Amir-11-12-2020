@@ -40,6 +40,7 @@ const CreateEmail = () => {
       });
     },
   });
+
   return (
     <Paper className='create-email' elevation={5}>
       <form

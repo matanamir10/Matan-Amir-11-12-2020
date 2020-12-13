@@ -8,16 +8,18 @@
     "npm": "6.14.7"
   },
   "scripts": {
-    "build": "cd client && npm run build",
+    "build": "tsc && cd client && npm run build",
     "install-client": "cd client && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
-    "start": "ts-node-dev --respawn src/index.ts"
+    "start:dev": "concurrently \"ts-node-dev --respawn src/index.ts\" \"cd client && npm start\"",
+    "start:prod": "node build/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@overnightjs/core": "^1.7.5",
+    "@overnightjs/logger": "^1.2.0",
     "@types/body-parser": "^1.19.0",
     "@types/cookie-session": "^2.0.42",
     "@types/cors": "^2.8.8",
@@ -33,7 +35,12 @@
     "http-status-codes": "^2.1.4",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.7",
+    "morgan": "^1.10.0",
     "ts-node-dev": "^1.1.1",
     "typescript": "^4.1.2"
+  },
+  "devDependencies": {
+    "@types/morgan": "^1.7.32",
+    "concurrently": "^5.3.0"
   }
 }

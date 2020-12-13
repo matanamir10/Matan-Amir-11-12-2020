@@ -36,6 +36,7 @@ const messageSchema = new mongoose.Schema(
     subject: {
       type: String,
       required: true,
+      maxlength: 30,
     },
   },
   {
