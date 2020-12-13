@@ -1,11 +1,11 @@
 import React, { Suspense, useEffect } from 'react';
 import './App.scss';
-import { CircularProgress } from '@material-ui/core';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import Auth from '../Auth/Auth';
 import { Navigation } from '../../components/Navigation/Navigation';
+import { Loading } from '../../UI/Loading/Loading';
 import { autoAuthenticate } from '../../store/actions/auth';
 
 const ComposeEmail = React.lazy(() => import('../ComposeEmail/ComposeEmail'));
@@ -37,7 +37,7 @@ export const App = () => {
     app = (
       <>
         <Navigation />
-        <Suspense fallback={<CircularProgress color='secondary' />}>
+        <Suspense fallback={<Loading />}>
           <Switch>
             <Route path='/auth' component={Auth} />
             <Route path='/compose' component={ComposeEmail} />

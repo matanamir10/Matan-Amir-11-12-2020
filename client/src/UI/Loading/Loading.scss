@@ -1,0 +1,6 @@
+@import '../../styles/mixins.scss';
+
+.loading-container {
+  height: 100%;
+  @include absCenter;
+}
