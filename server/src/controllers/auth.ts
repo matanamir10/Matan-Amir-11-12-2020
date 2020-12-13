@@ -13,7 +13,7 @@ import { BadRequestError } from '../errors/badRequest';
 import { User } from '../db/models/user';
 import { currentUser } from '../middlewares/current-user';
 
-@Controller('api/auth')
+@Controller('api/users')
 export class AuthController {
   @Get('currentUser')
   @Middleware(currentUser)
@@ -31,7 +31,7 @@ export class AuthController {
     console.log('here');
     const { email, userId } = req.body;
 
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email, userId });
     if (!existingUser) {
       throw new BadRequestError('Invalid credentials');
     }
