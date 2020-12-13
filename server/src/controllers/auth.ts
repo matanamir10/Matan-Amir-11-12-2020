@@ -18,6 +18,7 @@ export class AuthController {
   @Get('currentuser')
   @Middleware(currentUser)
   private async currentUser(req: Request, res: Response) {
+    console.log('in auth currentUser');
     res.send({ currentUser: req.currentUser || null });
   }
 

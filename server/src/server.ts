@@ -13,7 +13,7 @@ export class ServerApp extends Server {
   constructor() {
     super(process.env.NODE_ENV === 'development'); // setting showLogs to true
     this.app.use(bodyParser.json());
-    this.app.use(cors());
+    this.app.use(cors({ origin: true, credentials: true }));
     this.app.use(
       cookieSession({
         keys: ['secret'],
