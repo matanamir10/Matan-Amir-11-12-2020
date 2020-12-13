@@ -1,3 +1,5 @@
+import express from 'express';
+import path from 'path';
 import * as bodyParser from 'body-parser';
 import 'express-async-errors';
 import { Server } from '@overnightjs/core';
@@ -23,24 +25,24 @@ export class ServerApp extends Server {
         httpOnly: true,
       })
     );
-
+    if (process.env.NODE_ENV === 'production') {
+      this.app.use(express.static(path.join(__dirname, 'client', 'build')));
+    }
     this.setupControllers();
-    this.app.all('*', async () => {
-      throw new NotFoundError();
-    });
 
     this.app.use(errorHandler);
+    this.app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+    });
+    // this.app.all('*', async () => {
+    //   throw new NotFoundError();
+    // });
   }
 
   private setupControllers(): void {
     const authController = new AuthController();
     const messageController = new MessageController();
-    super.addControllers(
-      [authController, messageController]
-      /*, optional router here*/
-      /* middleware that will apply to all controllers here */
-      // add here morgan http middlaware
-    );
+    super.addControllers([authController, messageController]);
   }
 
   public start(port: number): void {
