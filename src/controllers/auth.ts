@@ -53,9 +53,11 @@ export class AuthController {
   private async signup(req: Request, res: Response) {
     const { email, userId } = req.body;
 
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email, userId });
     if (existingUser) {
-      throw new BadRequestError('Email in use');
+      throw new BadRequestError(
+        'Email in use or UserId has already been taken'
+      );
     }
     const user = User.build({ email, userId });
     await user.save();

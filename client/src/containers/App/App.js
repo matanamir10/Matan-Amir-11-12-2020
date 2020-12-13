@@ -23,7 +23,7 @@ export const App = () => {
   useEffect(() => {
     console.log(auth);
     if (auth.isAuth) {
-      history.push('/');
+      history.push('/compose');
     }
   }, [auth]);
 
@@ -39,10 +39,10 @@ export const App = () => {
         <Navigation />
         <Suspense fallback={<CircularProgress color='secondary' />}>
           <Switch>
-            {/* <Route path='/auth' component={Auth} /> */}
+            <Route path='/auth' component={Auth} />
             <Route path='/compose' component={ComposeEmail} />
             <Route path='/manage' component={ManageEmail} />
-            <Route component={() => <h1>Please select</h1>} />
+            <Redirect from='/' to='/compose' />
           </Switch>
         </Suspense>
         <ToastContainer />
