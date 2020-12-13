@@ -15,7 +15,7 @@ import { currentUser } from '../middlewares/current-user';
 
 @Controller('api/users')
 export class AuthController {
-  @Get('currentUser')
+  @Get('currentuser')
   @Middleware(currentUser)
   private async currentUser(req: Request, res: Response) {
     res.send({ currentUser: req.currentUser || null });
