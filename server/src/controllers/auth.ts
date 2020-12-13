@@ -53,7 +53,7 @@ export class AuthController {
   private async signup(req: Request, res: Response) {
     const { email, userId } = req.body;
 
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ $or: [{ email }, { userId }] });
     if (existingUser) {
       throw new BadRequestError('Email in use');
     }

@@ -21,7 +21,6 @@ export const App = () => {
   }, []);
 
   useEffect(() => {
-    console.log(auth);
     if (auth.isAuth) {
       history.push('/');
     }
