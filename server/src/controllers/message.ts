@@ -1,22 +1,23 @@
 import { StatusCodes } from 'http-status-codes';
 import {
   Controller,
-  ClassErrorMiddleware,
   Middleware,
   Get,
   Post,
   Delete,
+  ClassMiddleware,
 } from '@overnightjs/core';
 import { NextFunction, Request, Response } from 'express';
 // import { Logger } from '@overnightjs/logger';
 import { body, param } from 'express-validator';
-import { errorHandler } from '../middlewares/errorHandler';
 import { validateRequest } from '../middlewares/validationError';
 import { Message } from '../db/models/message';
+import { requireAuth } from '../middlewares/require-auth';
+import { currentUser } from '../middlewares/current-user';
 
 @Controller('api/message')
-@ClassErrorMiddleware(errorHandler)
-export class UserController {
+@ClassMiddleware([currentUser, requireAuth])
+export class MessageController {
   @Get(':senderId')
   @Middleware([
     param('senderId').isString().withMessage('senderId is required'),
