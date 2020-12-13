@@ -47,11 +47,7 @@ export class AuthController {
   private async signup(req: Request, res: Response) {
     const { email, userId } = req.body;
 
-<<<<<<< HEAD:server/src/controllers/auth.ts
     const existingUser = await User.findOne({ $or: [{ email }, { userId }] });
-=======
-    const existingUser = await User.findOne({ email, userId });
->>>>>>> 87313b083dc49504b15914e08e1e1a3317397ec2:src/controllers/auth.ts
     if (existingUser) {
       throw new BadRequestError(
         'Email in use or UserId has already been taken'
