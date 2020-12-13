@@ -9,7 +9,7 @@ if (!process.env.MONGO_URI || !process.env.JWT_KEY) {
 }
 const run = async () => {
   await connectToDB();
-  const port = 4000 || process.env.PORT;
+  const port = parseInt(process.env.PORT!) || 4000;
   new ServerApp().start(port);
 };
 
