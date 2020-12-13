@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
-import * as bodyParser from 'body-parser';
+import bodyParser from 'body-parser';
+import morgan from 'morgan';
 import 'express-async-errors';
 import { Server } from '@overnightjs/core';
 import cors from 'cors';
@@ -11,7 +12,8 @@ import { MessageController } from './controllers/message';
 
 export class ServerApp extends Server {
   constructor() {
-    super(process.env.NODE_ENV === 'development'); // setting showLogs to true
+    super(process.env.NODE_ENV === 'development');
+    this.app.use(morgan('tiny'));
     this.app.use(bodyParser.json());
     this.app.use(cors({ origin: true, credentials: true }));
     this.app.use(
