@@ -14,5 +14,6 @@ const run = async () => {
 };
 
 run().catch((err) => {
+  console.log(err);
   process.exit(0);
 });
