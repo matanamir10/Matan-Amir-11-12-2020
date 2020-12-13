@@ -6,6 +6,7 @@ export const SIGNOUT = 'signout';
 export const autoAuthenticate = () => {
   return async (dispatch) => {
     const { data: user } = await axios.get('/api/users/currentuser');
+    console.log('user', user);
     dispatch({
       type: AUTHENTICATE,
       value: user.currentUser,

@@ -24,8 +24,8 @@ export default () => {
     },
     (err) => {
       console.log('4');
-      console.log('Error', err);
-      setError(err.message);
+      console.log('Error', err?.response?.data);
+      setError(err?.response?.data.errors[0].message || err.message);
       return Promise.reject(err);
     }
   );
