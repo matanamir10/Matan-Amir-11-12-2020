@@ -1,7 +1,5 @@
 import mongoose from 'mongoose';
 
-// An interface that describes the properties
-// that are requried to create a new User
 interface UserAttrs {
   email: string;
   userId: number;

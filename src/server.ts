@@ -1,18 +1,19 @@
-import express from 'express';
 import path from 'path';
+import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import morgan from 'morgan';
 import 'express-async-errors';
-import { Server } from '@overnightjs/core';
-import cors from 'cors';
 import cookieSession from 'cookie-session';
+import { Server } from '@overnightjs/core';
 import { errorHandler } from './middlewares/errorHandler';
 import { AuthController } from './controllers/auth';
 import { MessageController } from './controllers/message';
+import { AppLogger } from './models/Logger';
 
 export class ServerApp extends Server {
   constructor() {
-    super(process.env.NODE_ENV === 'development');
+    super(true);
     this.app.use(morgan('tiny'));
     this.app.use(bodyParser.json());
     this.app.use(cors({ origin: true, credentials: true }));
@@ -46,7 +47,7 @@ export class ServerApp extends Server {
 
   public start(port: number): void {
     this.app.listen(port, () => {
-      console.log(`App running on port: ${port}`);
+      AppLogger.getLogger().info(`App running on port: ${port}`);
     });
   }
 }

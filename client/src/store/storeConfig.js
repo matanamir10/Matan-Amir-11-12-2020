@@ -4,11 +4,15 @@ import thunk from 'redux-thunk';
 import { authReducer } from './reducers/auth';
 import { messageReducer } from './reducers/message';
 
-// unable composewithdevtools when production
+let middlewares = composeWithDevTools(applyMiddleware(thunk));
+if (process.env.NODE_ENV === 'production') {
+  middlewares = applyMiddleware(thunk);
+}
+
 export const store = createStore(
   combineReducers({
     auth: authReducer,
     message: messageReducer,
   }),
-  composeWithDevTools(applyMiddleware(thunk))
+  middlewares
 );

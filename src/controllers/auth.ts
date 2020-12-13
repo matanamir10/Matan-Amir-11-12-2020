@@ -1,10 +1,4 @@
-import {
-  Controller,
-  ClassErrorMiddleware,
-  Middleware,
-  Get,
-  Post,
-} from '@overnightjs/core';
+import { Controller, Middleware, Get, Post } from '@overnightjs/core';
 import { Request, Response } from 'express';
 import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
