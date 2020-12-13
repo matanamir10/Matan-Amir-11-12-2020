@@ -55,7 +55,8 @@ export class AuthController {
     }
     const user = User.build({ email, userId });
     await user.save();
-    // Generate JWT
+
+    // Generate JWT for user
     const userJwt = jwt.sign({ email, userId }, process.env.JWT_KEY!);
 
     // Store it on session object
