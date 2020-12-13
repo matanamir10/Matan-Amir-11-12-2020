@@ -11,7 +11,6 @@ export const MessageList = ({ messages, prefix, openErrorModal }) => {
     });
   };
   const handleDelete = (id, prefix) => {
-    console.log(id);
     openErrorModal(id, prefix);
   };
 

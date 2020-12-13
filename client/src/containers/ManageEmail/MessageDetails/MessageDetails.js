@@ -16,7 +16,6 @@ const MessageDetails = () => {
   const { messagesSent, messagesReccived } = useSelector(
     (state) => state.message
   );
-  console.log(messagesSent);
 
   const openErrorModal = (id, prefix) => {
     setDeleteModal({ visible: true, messageId: id, currentPrefix: prefix });
@@ -27,7 +26,6 @@ const MessageDetails = () => {
   };
 
   const handleChange = (event, newValue) => {
-    console.log(newValue);
     setTabsValue(newValue);
   };
 

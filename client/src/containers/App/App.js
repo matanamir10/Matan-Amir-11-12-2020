@@ -1,11 +1,11 @@
 import React, { Suspense, useEffect } from 'react';
 import './App.scss';
+import { CircularProgress } from '@material-ui/core';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { CircularProgress } from '@material-ui/core';
 import { ToastContainer } from 'react-toastify';
-import { Navigation } from '../../components/Navigation/Navigation';
 import Auth from '../Auth/Auth';
+import { Navigation } from '../../components/Navigation/Navigation';
 import { autoAuthenticate } from '../../store/actions/auth';
 
 const ComposeEmail = React.lazy(() => import('../ComposeEmail/ComposeEmail'));
@@ -34,7 +34,6 @@ export const App = () => {
     </>
   );
   if (auth.isAuth) {
-    console.log('in private routesssssssssssssssssssssssss');
     app = (
       <>
         <Navigation />

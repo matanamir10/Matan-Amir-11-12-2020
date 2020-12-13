@@ -1,17 +1,15 @@
 import React from 'react';
 import './Auth.scss';
 import {
-  TextField,
   FormControlLabel,
   RadioGroup,
   Radio,
   Button,
   Paper,
-  Snackbar,
 } from '@material-ui/core';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { authenticate } from '../../store/actions/auth';
 import { AuthOptions } from '../../constants/authOptions';
 import { Input } from '../../UI/Input';
@@ -19,7 +17,6 @@ import withErrorHandler from '../../withErrorHandler/withErrorHandler';
 
 const Auth = ({ history }) => {
   const disptach = useDispatch();
-  //   const auth = useSelector((state) => state.auth);
   const formik = useFormik({
     initialValues: {
       email: '',

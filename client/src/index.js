@@ -7,8 +7,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store/storeConfig';
 
-console.log(process.env.NODE_ENV);
-
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>

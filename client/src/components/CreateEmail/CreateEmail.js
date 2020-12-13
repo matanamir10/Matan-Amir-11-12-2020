@@ -26,7 +26,6 @@ const CreateEmail = () => {
       recciverId: Yup.string().required('Required'),
     }),
     onSubmit: async (messageValues) => {
-      console.log(messageValues);
       await dispatch(
         createMessage({ ...messageValues, senderId: user.userId })
       );

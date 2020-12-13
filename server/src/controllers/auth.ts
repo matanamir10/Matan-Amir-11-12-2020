@@ -18,7 +18,6 @@ export class AuthController {
   @Get('currentuser')
   @Middleware(currentUser)
   private async currentUser(req: Request, res: Response) {
-    console.log('in auth currentUser');
     res.send({ currentUser: req.currentUser || null });
   }
 
@@ -29,7 +28,6 @@ export class AuthController {
     validateRequest,
   ])
   private async signin(req: Request, res: Response) {
-    console.log('here');
     const { email, userId } = req.body;
 
     const existingUser = await User.findOne({ email, userId });
@@ -37,12 +35,8 @@ export class AuthController {
       throw new BadRequestError('Invalid credentials');
     }
 
-    console.log('extinsg user', existingUser.id);
-
-    // Generate JWT
     const userJwt = jwt.sign({ email, userId }, process.env.JWT_KEY!);
 
-    // Store it on session object
     req.session = {
       jwt: userJwt,
     };

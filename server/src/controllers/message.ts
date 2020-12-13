@@ -7,8 +7,7 @@ import {
   Delete,
   ClassMiddleware,
 } from '@overnightjs/core';
-import { NextFunction, Request, Response } from 'express';
-// import { Logger } from '@overnightjs/logger';
+import { Request, Response } from 'express';
 import { body, param } from 'express-validator';
 import { validateRequest } from '../middlewares/validationError';
 import { Message } from '../db/models/message';
@@ -40,7 +39,6 @@ export class MessageController {
     validateRequest,
   ])
   private async createMessage(req: Request, res: Response): Promise<Response> {
-    // Logger.Info(req.body, true);
     const { senderId, recciverId, message, subject } = req.body;
     const messageDoc = Message.build({
       senderId,
@@ -58,9 +56,7 @@ export class MessageController {
   ])
   private async deleteMessage(req: Request, res: Response) {
     const { messageId } = req.params;
-    console.log(messageId);
     const doc = await Message.findOneAndRemove({ _id: messageId });
-    console.log('doc', doc);
     res.send(doc ? 'Message was deleted sucessufly' : {});
   }
 }

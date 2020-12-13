@@ -7,7 +7,6 @@ export default () => {
 
   const reqInterceptor = axios.interceptors.request.use(
     (req) => {
-      console.log('1');
       setError(null);
       return Promise.resolve(req);
     },
@@ -18,13 +17,10 @@ export default () => {
   );
   const resInterceptor = axios.interceptors.response.use(
     (res) => {
-      console.log('3', res);
       setError(null);
       return Promise.resolve(res);
     },
     (err) => {
-      console.log('4');
-      console.log('Error', err?.response?.data);
       setError(err?.response?.data.errors[0].message || err.message);
       return Promise.reject(err);
     }
@@ -32,7 +28,6 @@ export default () => {
 
   useEffect(() => {
     return () => {
-      console.log('return');
       axios.interceptors.request.eject(reqInterceptor);
       axios.interceptors.response.eject(resInterceptor);
     };
@@ -41,6 +36,5 @@ export default () => {
   const errorConfirmedHandler = () => {
     setError(null);
   };
-  console.log('in hook', error);
   return [error, errorConfirmedHandler];
 };

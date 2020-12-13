@@ -9,7 +9,6 @@ const EmailDetails = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const searchUserRelatedMessages = () => {
-    console.log(auth);
     dispatch(getMessages(auth.user.userId));
   };
   return (

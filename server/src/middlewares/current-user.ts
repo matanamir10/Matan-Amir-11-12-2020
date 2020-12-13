@@ -18,9 +18,6 @@ export const currentUser = (
   res: Response,
   next: NextFunction
 ) => {
-  console.log('in currentUser middlware');
-  console.log(process.env.JWT_KEY);
-  console.log(req.session?.jwt);
   if (!req.session?.jwt) {
     return next();
   }

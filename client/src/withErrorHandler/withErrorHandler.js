@@ -5,7 +5,6 @@ import useHttpErrorHandler from '../hooks/http-error-handler';
 const withErrorHandler = (WrappedComponent) => {
   return (props) => {
     const [error, clearError] = useHttpErrorHandler();
-    console.log('the error', error);
 
     return (
       <div>
